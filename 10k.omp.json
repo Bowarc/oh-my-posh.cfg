@@ -22,7 +22,7 @@
             "style": "austin",
             "threshold": 0
           },
-          "template": " \u27e8{{ .FormattedMs }} \u27e9",
+          "template": " \u27e8{{ .FormattedMs }}\u27e9",
           "foreground": "#ffe66d",
           "background": "#272727",
           "type": "executiontime",
