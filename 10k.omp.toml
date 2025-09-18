@@ -1,0 +1,125 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 3
+
+[transient_prompt]
+template = "❯</>_: "
+foreground = "#39b01f"
+background = "transparent"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+# This has a weird interaction with fish
+# Since we can't alias to internal commands, cls=clear aliases to /bin/clear
+# which if this is true, leaves a new line at the top of the terminal when using cls and doesn't when using clear
+newline = false
+
+[[blocks.segments]]
+template = "<#ffffff> </>{{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB"
+foreground = "#be9ddf"
+background = "#272727"
+type = "sysinfo"
+style = "plain"
+
+[[blocks.segments]]
+template = " ⟨{{ .FormattedMs }}⟩"
+foreground = "#ffe66d"
+background = "#272727"
+type = "executiontime"
+style = "diamond"
+
+[blocks.segments.properties]
+style = "austin"
+threshold = 0
+
+[[blocks.segments]]
+template = ' {{ if eq .Type "wifi"}}{{else if eq .Type "ethernet"}}{{ end }} '
+foreground = "#ffffff"
+background = "#272727"
+type = "connection"
+style = "diamond"
+
+[[blocks.segments]]
+foreground = "#111111"
+background = "#272727"
+type = "upgrade"
+style = "plain"
+
+[[blocks.segments]]
+template = ""
+foreground = "#272727"
+background = "transparent"
+type = "text"
+style = "plain"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+[[blocks.segments]]
+trailing_diamond = ""
+# template = " {{ .Path }}"
+template = "{{ .Path }}"
+foreground = "#07bca4"
+background = "#272727"
+type = "path"
+style = "diamond"
+
+[blocks.segments.properties]
+folder_icon = ""
+folder_separator_icon = "<#000000>❯</>"
+home_icon = "~"
+max_depth = 3
+style = "agnoster_short"
+
+[[blocks.segments]]
+trailing_diamond = ""
+template = "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#FFEB3B> {{ .Working.String }}</>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
+foreground = "#f05030"
+background = "#272727"
+type = "git"
+style = "diamond"
+background_templates = [
+  "{{ if or (.Working.Changed) (.Staging.Changed) }}{{ end }}",
+  "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FFCC80{{ end }}",
+  "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
+  "{{ if gt .Behind 0 }}#B388FB{{ end }}",
+]
+
+[blocks.segments.properties]
+fetch_upstream_icon = true
+untracked_modes = {}
+
+[[blocks.segments]]
+trailing_diamond = ""
+template = "🦀 {{ .Full }}"
+foreground = "#e8276f"
+background = "#272727"
+type = "rust"
+style = "diamond"
+
+[[blocks.segments]]
+trailing_diamond = ""
+template = "<#31709f> </>{{ .Full }}"
+foreground = "#ffdc4e"
+background = "#272727"
+type = "python"
+style = "diamond"
+
+[blocks.segments.properties]
+display_mode = "context"
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+[[blocks.segments]]
+template = "❯</>_: "
+foreground = "#39b01f"
+type = "status"
+style = "diamond"
+
+[blocks.segments.properties]
+always_enabled = true
