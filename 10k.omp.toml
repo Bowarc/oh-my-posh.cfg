@@ -15,7 +15,8 @@ alignment = "left"
 newline = false
 
 [[blocks.segments]]
-template = "<#ffffff> </>{{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB"
+# template = "<#ffffff> </>{{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB"
+template = "{{ (div ((sub .PhysicalTotalMemory .PhysicalFreeMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB"
 foreground = "#be9ddf"
 background = "#272727"
 type = "sysinfo"
@@ -39,11 +40,21 @@ background = "#272727"
 type = "connection"
 style = "diamond"
 
-[[blocks.segments]]
-foreground = "#111111"
-background = "#272727"
-type = "upgrade"
-style = "plain"
+# [[blocks.segments]]
+# foreground = "#111111"
+# background = "#272727"
+# type = "upgrade"
+# style = "plain"
+
+# [[blocks.segments]]
+# type = "command"
+# style = "plain"
+# background = "#272727"
+# foreground = "#7FD962"
+
+# [blocks.segments.properties]
+# shell = "bash"
+# command = "date +%H:%M"
 
 [[blocks.segments]]
 template = ""
