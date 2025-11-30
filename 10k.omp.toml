@@ -112,7 +112,7 @@ style = "diamond"
 
 [[blocks.segments]]
 trailing_diamond = ""
-template = "<#31709f> </>{{ .Full }}"
+template = "<#31709f> </>{{ .Full }}{{ if .Venv }} venv({{ .Venv }}){{ end }}"
 foreground = "#ffdc4e"
 background = "#272727"
 type = "python"
